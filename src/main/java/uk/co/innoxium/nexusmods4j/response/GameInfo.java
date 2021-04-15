@@ -1,6 +1,8 @@
 package uk.co.innoxium.nexusmods4j.response;
 
 import lombok.ToString;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
@@ -22,11 +24,31 @@ public class GameInfo {
     public long mods;
     public ArrayList<Category> categories;
 
-    @ToString
-    static class Category {
+    /**
+     * Gets a category instance for a child category, unless it is the root category
+     * @param childCategory - The category to get the parent of
+     * @return - Returns the Category instance of the parent category, unless not found, or it's the root, in which case, returns null
+     */
+    @Nullable
+    public Category getParentCategory(@NotNull Category childCategory) {
 
-        long category_id;
-        String name;
-        String parent_category; // This can be a boolean or int, so unsure what to use here?
+        if(childCategory.parent_category.equalsIgnoreCase("false")) return null;
+
+        for(Category cat : categories) {
+
+            if(cat.category_id == childCategory.category_id) {
+
+                return cat;
+            }
+        }
+        return null;
+    }
+
+    @ToString
+    public static class Category {
+
+        public long category_id;
+        public String name;
+        public String parent_category; // This can be a boolean or int, so unsure what to use here?
     }
 }
