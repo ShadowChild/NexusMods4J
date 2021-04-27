@@ -31,7 +31,8 @@ An exmaple of tracking a mod would be
 ```java
 boolean tracked = api.post().mods().track(<game_domain>, <mod_id>);
 // You can also untrack by calling:
-boolean untracked = api.post().mods.untrack(<game_domain>, <mod_id>);
+boolean untracked = api.post().mods.untrack(<game_domain>, <mod_id>); 
+// ^ This is actually a Delete request, however as the only one in the Nexus API, I moved it to the post() as it seemed fitting (hell, they made removing an endorsement a post request)
 // You can also use a Mod reference due to it containing the "game_domain" and "mod_id" values in the request body.
 boolean tracked = api.post().mods().track(modList.getSelectedItem());
 // ^ This method assumes you are using a JList<Mod> to get the Mod reference
