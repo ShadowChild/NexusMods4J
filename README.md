@@ -34,7 +34,7 @@ boolean tracked = api.post().mods().track(<game_domain>, <mod_id>);
 boolean untracked = api.post().mods.untrack(<game_domain>, <mod_id>);
 // You can also use a Mod reference due to it containing the "game_domain" and "mod_id" values in the request body.
 boolean tracked = api.post().mods().track(modList.getSelectedItem());
-// ^ This method assumes you are using a JList<Mod> to display/manipulate mods
+// ^ This method assumes you are using a JList<Mod> to get the Mod reference
 ```
 
 # How to get
